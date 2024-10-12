@@ -1,13 +1,13 @@
 package com.vladdosiik.security.model.dto.mapper;
 
 import com.vladdosiik.security.model.User;
-import com.vladdosiik.security.model.dto.NewUserForAdmin;
+import com.vladdosiik.security.model.dto.UserPostAdminDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    NewUserForAdmin toNewUserForAdmin(User user);
+    UserPostAdminDto toUserPostAdminDto(User user);
 
-    User toUser(NewUserForAdmin newUserForAdmin);
+    User toUser(UserPostAdminDto userPostAdminDto);
 }

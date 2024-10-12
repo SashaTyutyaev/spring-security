@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewUserForAdmin {
-
+public class UserPostAdminDto {
     private String name;
     private String password;
-
 }

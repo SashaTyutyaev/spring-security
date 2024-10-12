@@ -1,6 +1,6 @@
 package com.vladdosiik.security.controller;
 
-import com.vladdosiik.security.model.dto.NewUserForAdmin;
+import com.vladdosiik.security.model.dto.UserPostAdminDto;
 import com.vladdosiik.security.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,12 +21,12 @@ public class AdminController {
 
     @GetMapping
     public String getAdminPage(Model model) {
-        model.addAttribute("user", new NewUserForAdmin());
+        model.addAttribute("user", new UserPostAdminDto());
         return "admin";
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute NewUserForAdmin user,
+    public String createUser(@ModelAttribute UserPostAdminDto user,
                              RedirectAttributes redirectAttributes) {
         try {
             adminService.createUser(user);

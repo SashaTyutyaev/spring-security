@@ -1,11 +1,10 @@
 package com.vladdosiik.security.service.admin;
 
-import com.vladdosiik.security.model.User;
-import com.vladdosiik.security.model.dto.NewUserForAdmin;
+import com.vladdosiik.security.model.dto.UserPostAdminDto;
 
 public interface AdminService {
 
-    void createUser(NewUserForAdmin user);
+    void createUser(UserPostAdminDto user);
 
     void setRoleToUser(String name, String role);
 
