@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<div class="container">
+    <h2>Admin Panel</h2>
+
+    <div class="logout-container">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success">
+        <p th:text="${message}"></p>
+    </div>
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:if="${error}"></p>
+    </div>
+
+    <div class="form-container">
+        <h3>Create New User</h3>
+        <form th:action="@{/admin/createUser}" method="post">
+            <div>
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit">Create User</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <h3>Assign Role to User</h3>
+        <form th:action="@{/admin/setRole}" method="post">
+            <div>
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="username" required>
+            </div>
+            <div>
+                <label for="roleName">Role:</label>
+                <select id="roleName" name="roleName" required>
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                    <option value="ROLE_USER">ROLE_USER</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit">Assign Role</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-container">
+        <h3>Delete User</h3>
+        <form th:action="@{/admin/deleteUser}" method="post">
+            <div>
+                <label for="name">Username:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <button type="submit">Delete User</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

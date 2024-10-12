@@ -1,4 +1,4 @@
-package com.override.security;
+package com.vladdosiik.security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

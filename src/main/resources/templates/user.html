@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello user</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/user.css">
 </head>
 <body>
-<div>
-    <p>Hello User, this Spring Security example</p>
+<div class="container">
+    <h2>User Information</h2>
+
+    <div class="user-info">
+        <p><strong>Name:</strong> <span th:text="${username}"></span></p>
+    </div>
+
+    <div class="user-roles">
+        <p><strong>Roles:</strong></p>
+        <ul>
+            <li th:each="role : ${roles}" th:text="${role.authority}"></li>
+        </ul>
+    </div>
+
+    <div class="logout-container">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

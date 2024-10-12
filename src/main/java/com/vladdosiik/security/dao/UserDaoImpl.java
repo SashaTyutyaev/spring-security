@@ -1,7 +1,7 @@
-package com.override.security.dao;
+package com.vladdosiik.security.dao;
 
-import com.override.security.model.Role;
-import com.override.security.model.User;
+import com.vladdosiik.security.model.Role;
+import com.vladdosiik.security.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
