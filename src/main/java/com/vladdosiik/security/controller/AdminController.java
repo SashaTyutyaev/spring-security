@@ -1,10 +1,12 @@
 package com.vladdosiik.security.controller;
 
-import com.vladdosiik.security.model.User;
+import com.vladdosiik.security.model.dto.NewUserForAdmin;
 import com.vladdosiik.security.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,18 +20,14 @@ public class AdminController {
     private final AdminService adminService;
 
     @GetMapping
-    public String getAdminPage() {
+    public String getAdminPage(Model model) {
+        model.addAttribute("user", new NewUserForAdmin());
         return "admin";
     }
 
     @PostMapping("/createUser")
-    public String createUser(@RequestParam String name,
-                             @RequestParam String password,
+    public String createUser(@ModelAttribute NewUserForAdmin user,
                              RedirectAttributes redirectAttributes) {
-        User user = User.builder()
-                .name(name)
-                .password(password)
-                .build();
         try {
             adminService.createUser(user);
             redirectAttributes.addFlashAttribute("message", "User created successfully");

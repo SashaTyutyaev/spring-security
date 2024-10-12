@@ -2,6 +2,8 @@ package com.vladdosiik.security.service.admin;
 
 import com.vladdosiik.security.model.Role;
 import com.vladdosiik.security.model.User;
+import com.vladdosiik.security.model.dto.NewUserForAdmin;
+import com.vladdosiik.security.model.dto.mapper.UserMapper;
 import com.vladdosiik.security.repository.RoleRepository;
 import com.vladdosiik.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +23,16 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final UserMapper userMapper;
 
     @Override
     @Transactional
-    public void createUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void createUser(NewUserForAdmin newUserForAdmin) {
+        User user = userMapper.toUser(newUserForAdmin);
+        user.setPassword(passwordEncoder.encode(newUserForAdmin.getPassword()));
         user.setRoles(Set.of(findRoleByName("ROLE_USER")));
         userRepository.save(user);
-        log.info("Successfully create new user by admin");
+        log.info("Successfully create new newUserForAdmin by admin");
     }
 
     @Override

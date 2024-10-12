@@ -25,14 +25,14 @@
 
     <div class="form-container">
         <h3>Create New User</h3>
-        <form th:action="@{/admin/createUser}" method="post">
+        <form th:action="@{/admin/createUser}" th:object="${user}" method="post">
             <div>
                 <label for="name">Username:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" th:field="*{name}" required>
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" th:field="*{password}" required>
             </div>
             <div>
                 <button type="submit">Create User</button>
